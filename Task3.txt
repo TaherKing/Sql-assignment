@@ -1,0 +1,113 @@
+1. Select employees first name, last name, job_id and salary whose first name starts with alphabet S
+  select first_name,last_name,job_id,salary from employees
+   where first_name like'S%';
+
+
+FIRST_NAME           LAST_NAME                 JOB_ID         SALARY
+-------------------- -------------------------                ----------           ----------
+Steven                 	King                      AD_PRES            24000
+Shelli              	         Baida                     PU_CLERK         2900
+Sigal               	         Tobias                    PU_CLERK         2800
+Shanta                         Vollman                   ST_MAN            6500
+Steven                         Markle                    ST_CLERK         2200
+
+
+
+
+
+
+2. Write a query to select employee with the highest salary
+
+
+
+
+ select first_name,last_name from employees where salary in (select                 max(salary) from employees);
+
+
+
+
+FIRST_NAME           LAST_NAME
+-------------------- 	-------------------------
+Steven              		 King
+
+
+
+
+3. Select employee with the second highest salary
+
+
+
+
+select first_name,last_name,salary from employees where salary in (select min(salary) from 
+ (select distinct(salary) from employees order by salary desc) where RowNum<=2);
+
+
+FIRST_NAME           LAST_NAME                     SALARY
+-------------------- ------------------------- ----------
+Neena                Kochhar                        17000
+Lex                  De Haan                        17000
+
+
+
+
+
+
+
+
+ 4.Fetch employees with 2nd or 3rd highest salary
+
+
+	select first_name,last_name,salary from employees where salary in     (select min(salary) from 
+ (select distinct(salary) from employees order by salary desc) where RowNum<=3);
+
+
+
+
+5.Write a query to select employees and their corresponding managers and their salaries
+
+
+           SELECT 
+             sub.employee_id AS subordinate_id,
+   	 sub.first_name AS subordinate_first_name,
+   	 sub.last_name AS subordinate_last_name,
+   	 sup.employee_id AS superior_id,
+   	 sup.first_name AS superior_first_name,
+   	 sup.last_name AS superior_last_name,
+    	sup.salary AS superior_last_name
+FROM employees sub
+JOIN employees sup
+ON sub.manager_id = sup.employee_id
+ORDER BY superior_id;
+
+SUBORDINATE_ID SUBORDINATE_FIRST_NA SUBORDINATE_LAST_NAME     SUPERIOR_ID SUPERIOR_FIRST_NAME  SUPER
+-------------- -------------------- ------------------------- ----------- -------------------- -----
+           124 Kevin                Mourgos                           100 Steven               King                                   24000
+           123 Shanta               Vollman                           100 Steven               King                                   24000
+           122 Payam                Kaufling                          100 Steven               King                                   24000
+           121 Adam                 Fripp                             100 Steven               King                                   24000
+           120 Matthew              Weiss                             100 Steven               King                                   24000
+           114 Den                  Raphaely                          100 Steven               King                                   24000
+           102 Lex                  De Haan                           100 Steven               King                                   24000
+           101 Neena                Kochhar                           100 Steven               King                                   24000
+           108 Nancy                Greenberg                         101 Neena                Kochhar                                17000
+           103 Alexander            Hunold                            102 Lex                  De Haan                                17000
+           107 Diana                Lorentz                           103 Alexander            Hunold                                  9000
+           106 Valli                Pataballa                         103 Alexander            Hunold                                  9000
+           105 David                Austin                            103 Alexander            Hunold                                  9000
+           104 Bruce                Ernst                             103 Alexander            Hunold                                  9000
+           113 Luis                 Popp                              108 Nancy                Greenberg                              12000
+           109 Daniel               Faviet                            108 Nancy                Greenberg                              12000
+           110 John                 Chen                              108 Nancy                Greenberg                              12000
+           111 Ismael               Sciarra                           108 Nancy                Greenberg                              12000
+           112 Jose Manuel          Urman                             108 Nancy                Greenberg                              12000
+           119 Karen                Colmenares                        114 Den                  Raphaely                               11000
+           118 Guy                  Himuro                            114 Den                  Raphaely                               11000
+           117 Sigal                Tobias                            114 Den                  Raphaely                               11000
+           116 Shelli               Baida                             114 Den                  Raphaely                               11000
+           115 Alexander            Khoo                              114 Den                  Raphaely                               11000
+           128 Steven               Markle                            120 Matthew              Weiss                                   8000
+           127 James                Landry                            120 Matthew              Weiss                                   8000
+           125 Julia                Nayer                             120 Matthew              Weiss                                   8000
+           126 Irene                Mikkilineni                       120 Matthew              Weiss                                   8000
+           130 Mozhe                Atkinson                          121 Adam                 Fripp                                   8200
+           129 Laura                Bissot                            121 Adam                 Fripp                                   8200
