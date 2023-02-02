@@ -1,0 +1,53 @@
+FURNITURE TABLE
+
+1)To show all information about the Baby cots from the FURNITURE table
+
+ select * from furniture
+  where Type='Baby cot';
+
+        NO ITEMNAME        TYPE            DOS            PRICE   DISCOUNT
+  ----------  ---------------      ---------------        ---------         ----------     ----------
+         2    Pink feather     Baby cot        20-JAN-02       7000         20
+         3    Dolphin            Baby cot        19-FEB-02       9500         20
+         6    Donald             Baby cot        24-FEB-02       6500         15
+        13   Micky               Baby cot        21-FEB-03       7500         15
+
+2)To list the ITEMNAME which are priced at more than 15000 from the FURNITURE table
+
+select Itemname from furniture
+ where price>15000;
+
+ITEMNAME
+---------------
+White Lotus
+Decent
+Comfort Zone
+Royal finish
+Royal tiger
+WoodComfort
+Old Fox
+
+3)To list ITEMNAME and TYPE of those items, in which date of stock is before 22/01/02 from the FURNITURE table in the descending order of ITEMNAME
+
+select Itemname,Type from furniture
+  where DOS<'22-jan-02'
+  order by Itemname DESC;
+
+ITEMNAME        TYPE
+--------------- ---------------
+Pink feather    Baby cot
+Econo sitting   Sofa
+Decent          office table
+Confort Zone    Double bed
+
+4)To display ITEMNAME and DATAOFSTOCK of those items, whose TYPE is “ Sofa” fromFURNITURE table
+
+select Itemname,DOS from furniture
+ where Type='Sofa';
+
+ITEMNAME        DOS
+--------------- ---------
+Royal tiger     22-FEB-02
+Econo sitting   13-DEC-01
+Old Fox         20-FEB-03
+
